@@ -25,21 +25,21 @@ const CategoryGridTitle = props => {
 const styles = StyleSheet.create({
     gridItem: {
         flex: 1,
-        margin: 10,
-        height: 121,
-        borderRadius: 5,
-        overflow: 'hidden'
+        margin: 15,
+        height: 150,
+        borderRadius: 10,
+        overflow: Platform.OS === 'android' && Platform.Version > 20 ? 'hidden' : 'visible',
+        elevation: 7,
     },
     container: {
         flex: 1,
         borderWidth: 1,
         borderColor: 'gray',
-        borderRadius: 5,
+        borderRadius: 10,
         shadowColor: 'gray',
         shadowOpacity: 0.5,
         shadowOffset: { width: 0, height: 2 },
-        shadowRadius: 5,
-        elevation: 4,
+        shadowRadius: 10,
         padding: 15,
         justifyContent: 'flex-end',
         alignItems: 'flex-end'

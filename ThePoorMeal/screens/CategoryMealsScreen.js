@@ -9,7 +9,6 @@ import MealItem from '../components/MealItem';
 const CategoryMealsScreen = props => {
 
     const renderMealItem = itemData => {
-        console.log(itemData)
         return (
             <MealItem
                 title={itemData.item.title}
@@ -17,7 +16,13 @@ const CategoryMealsScreen = props => {
                 complexity={itemData.item.complexity}
                 affordability={itemData.item.affordability}
                 image={itemData.item.imageUrl}
-                onSelectMeal={() => { }} />
+                onSelectMeal={() => {
+                    props.navigation.navigate({
+                        routeName: 'MealDetails', params: {
+                            mealId: itemData.item.id
+                        }
+                    })
+                }} />
         );
     }
 
