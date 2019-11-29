@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, Text, TouchableOpacity, ImageBackground } from 'react-native';
 
 const MealItem = props => {
-    console.log('Props', props)
     return (
         <View style={styles.mealItem}>
             <TouchableOpacity onPress={props.onSelectMeal}>
