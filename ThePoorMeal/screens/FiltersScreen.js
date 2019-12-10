@@ -5,49 +5,66 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../components/HeaderButton';
 import Colors from '../constants/Colors';
 
-/* Custom Component for Filter*/
 const FilterSwitch = props => {
   return (
     <View style={styles.filterContainer}>
       <Text>{props.label}</Text>
-      <Switch trackColor={{ true: Colors.primaryColor }} thumbColor={Platform.OS === 'android' ? Colors.primaryColor : ''} value={props.value} onValueChange={props.onChange} />
+      <Switch
+        trackColor={{ true: Colors.primaryColor }}
+        thumbColor={Platform.OS === 'android' ? Colors.primaryColor : ''}
+        value={props.state}
+        onValueChange={props.onChange}
+      />
     </View>
   );
-}
+};
 
 const FiltersScreen = props => {
-
   const { navigation } = props;
 
   const [isGlutenFree, setIsGlutenFree] = useState(false);
   const [isLactoseFree, setIsLactoseFree] = useState(false);
   const [isVegan, setIsVegan] = useState(false);
-  const [isVegetarin, setIsVegetarin] = useState(false);
+  const [isVegetarian, setIsVegetarian] = useState(false);
 
   const saveFilters = useCallback(() => {
-    console.log('Hello')
     const appliedFilters = {
       glutenFree: isGlutenFree,
       lactoseFree: isLactoseFree,
       vegan: isVegan,
-      vegetarian: isVegetarin
-    }
-    console.log(appliedFilters)
-  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarin])
+      isVegetarian: isVegetarian
+    };
 
-  /* State change function */
+    console.log(appliedFilters);
+  }, [isGlutenFree, isLactoseFree, isVegan, isVegetarian]);
+
   useEffect(() => {
     navigation.setParams({ save: saveFilters });
   }, [saveFilters]);
 
-
   return (
     <View style={styles.screen}>
       <Text style={styles.title}>Available Filters / Restrictions</Text>
-      <FilterSwitch label='Gluten-free' value={isGlutenFree} onChange={newValue => setIsGlutenFree(newValue)} />
-      <FilterSwitch label='Lactose-free' value={isLactoseFree} onChange={newValue => setIsLactoseFree(newValue)} />
-      <FilterSwitch label='Vegan' value={isVegan} onChange={newValue => setIsVegan(newValue)} />
-      <FilterSwitch label='Vegetarian' value={isVegetarin} onChange={newValue => setIsVegetarin(newValue)} />
+      <FilterSwitch
+        label="Gluten-free"
+        state={isGlutenFree}
+        onChange={newValue => setIsGlutenFree(newValue)}
+      />
+      <FilterSwitch
+        label="Lactose-free"
+        state={isLactoseFree}
+        onChange={newValue => setIsLactoseFree(newValue)}
+      />
+      <FilterSwitch
+        label="Vegan"
+        state={isVegan}
+        onChange={newValue => setIsVegan(newValue)}
+      />
+      <FilterSwitch
+        label="Vegetarian"
+        state={isVegetarian}
+        onChange={newValue => setIsVegetarian(newValue)}
+      />
     </View>
   );
 };
